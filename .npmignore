@@ -1,0 +1,4 @@
+examples/**
+node_modules/**
+tests/**
+.travis.yml
