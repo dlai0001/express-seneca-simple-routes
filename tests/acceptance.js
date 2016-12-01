@@ -24,11 +24,14 @@ test('it calls next() if route is not handled', function (assert) {
 });
 
 test('it calls seneca action with correct route params if route is matched', function (assert) {
-	assert.plan(4);
+	assert.plan(1);
 
-	let seneca = {
-		act: sinon.spy()
-	}
+	let seneca = require('seneca')();
+
+	seneca.add('role:web,route:userDetail', (msg, reply) => {
+		assert.equal(msg.params.id, '123');
+		return reply(null, {});
+	});
 
 	let req = {
 		url: "/user/123"
@@ -43,9 +46,5 @@ test('it calls seneca action with correct route params if route is matched', fun
 
 	router(req, res, next);
 
-	assert.ok(seneca.act.called);
-	let calledArgs = seneca.act.args[0][0];
-	assert.equal(calledArgs.role, "web");
-	assert.equal(calledArgs.route, "userDetail");
-	assert.equal(calledArgs.params.id, '123');
+
 });
