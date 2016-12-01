@@ -14,8 +14,7 @@ npm install express-seneca-simple-routes
 
 ```javascript
 let seneca = require('seneca')();
-//let SimpleRouter = require("express-seneca-simple-routes");
-let SimpleRouter = require("../index");
+let SimpleRouter = require("express-seneca-simple-routes");
 let express = require("express")
 
 // setup your routes
