@@ -47,5 +47,5 @@ test('it calls seneca action with correct route params if route is matched', fun
 	let calledArgs = seneca.act.args[0][0];
 	assert.equal(calledArgs.role, "web");
 	assert.equal(calledArgs.route, "userDetail");
-	// assert.equal(calledArgs.params.id, '123');
+	assert.equal(calledArgs.params.id, '123');
 });
