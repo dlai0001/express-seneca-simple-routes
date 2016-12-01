@@ -7,7 +7,7 @@ module.exports = class ExpressSenecaSimpleRoute {
     	this.seneca = senecaInstance;    	
       	
     	// returns function binded to this class.
-      	var requestHandler = this.handleRequest.bind(this);
+      	let requestHandler = this.handleRequest.bind(this);
       	requestHandler.register = this.register.bind(this);
 
       	return requestHandler;
@@ -38,7 +38,23 @@ module.exports = class ExpressSenecaSimpleRoute {
     }
 
     handleRequest(req, res, next) {
-		//handle req.url    	    	
-    	next();
+		
+    	for(let index in this.routes) {
+    		let routeEntry = this.routes[index]
+    		
+    		let result = routeEntry.routeObj.match(req.url);
+
+    		if(result !== false) {
+    			
+    			return this.seneca.act({
+    				role: "web",
+    				route: routeEntry.name,
+    				params: result
+    			}, function(err, result) {
+    				//do nothing
+    			});
+    		}
+    	}
+    	return next();
     }
 }
