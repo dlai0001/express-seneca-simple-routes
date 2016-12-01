@@ -3,7 +3,7 @@
 ![Seneca][Logo]
 
 # express-seneca-simple-routes
-A express middleware for routing to seneca actions.
+A express middleware for routing to seneca microservices framework, http://senecajs.org/, actions.
 
 ## Install
 
