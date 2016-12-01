@@ -4,7 +4,7 @@ test('foo test', function (t) {
 	t.plan(1);
 
 	var Routes = require('../index');
-  var r = new Routes();
+  var r = new Routes('baz');
 
-	t.equal(r(), "bar");
+	t.equal(r(), "barbaz");
 });

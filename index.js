@@ -1,10 +1,11 @@
 
 module.exports = class ExpressSenecaSimpleRoute {
-    constructor() {
-      return this.foo;
+    constructor(bar) {
+      this.bar = bar;
+      return this.foo.bind(this);
     }
 
     foo() {
-        return "bar";
+        return "bar" + this.bar;
     }
 }
