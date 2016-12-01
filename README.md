@@ -12,36 +12,36 @@ npm install express-seneca-simple-routes
 ```
 ## Usage:
 
-        ```javascript
-        let seneca = require('seneca')();
-        //let SimpleRouter = require("express-seneca-simple-routes");
-        let SimpleRouter = require("../index");
-        let express = require("express")
+```javascript
+let seneca = require('seneca')();
+//let SimpleRouter = require("express-seneca-simple-routes");
+let SimpleRouter = require("../index");
+let express = require("express")
 
-        // setup your routes
-        let router = new SimpleRouter(seneca);
-        router.register({
-          userDetails: "/user/:id"
-        });
+// setup your routes
+let router = new SimpleRouter(seneca);
+router.register({
+  userDetails: "/user/:id"
+});
 
-        // route handling actors
-        seneca.add('role:web,route:userDetails', (msg, done) => {
-          // msg.params - route parameters
-          // msg.request - express request object
-          // msg.response - express response object
+// route handling actors
+seneca.add('role:web,route:userDetails', (msg, done) => {
+  // msg.params - route parameters
+  // msg.request - express request object
+  // msg.response - express response object
 
-          msg.response.send(`user id: ${msg.params.id}`);
-          done();
-        });
+  msg.response.send(`user id: ${msg.params.id}`);
+  done();
+});
 
-        // use express-seneca-simple-routes middleware
-        let app = express();
-        app.use(router);
+// use express-seneca-simple-routes middleware
+let app = express();
+app.use(router);
 
-        app.listen(3000, function() {
-          console.log('Example app listening on port 3000!')
-        });
-        ```
+app.listen(3000, function() {
+  console.log('Example app listening on port 3000!')
+});
+```
 
 
 [Logo]: http://senecajs.org/files/assets/seneca-logo.png
