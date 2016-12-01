@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
-    "route-parser": "0.0.5"
+    "route-parser": "0.0.5",
+    "seneca": "^3.2.2"
   },
   "devDependencies": {
     "tape": "^4.6.3"
