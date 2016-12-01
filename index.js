@@ -54,8 +54,9 @@ module.exports = class ExpressSenecaSimpleRoute {
             response: res,
             next: next
     			}, function(err, result) {
-    				//do nothing
+    				//do nothing            
     			});
+
     		}
     	}
     	return next();
