@@ -1,10 +1,24 @@
-var test = require('tape');
+"use strict";
+let test = require('tape');
+let sinon = require('sinon');
 
-test('foo test', function (t) {
-	t.plan(1);
+let SimpleRoutes = require("../index");
 
-	var Routes = require('../index');
-  var r = new Routes('baz');
 
-	t.equal(r(), "barbaz");
+test('it calls next() if route is not handled', function (assert) {
+	assert.plan(1);
+	let seneca = null
+
+	let req = {
+		url: "/nonexistentroute"
+	};
+	let next = sinon.spy();
+	let res = sinon.spy();	
+
+	let router = new SimpleRoutes(seneca);
+	router.register({});
+
+	router(req, res, next);
+
+	assert.ok(next.called);
 });
