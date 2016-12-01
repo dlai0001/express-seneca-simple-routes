@@ -29,6 +29,7 @@ seneca.add('role:web,route:userDetails', (msg, done) => {
   // msg.params - route parameters
   // msg.request - express request object
   // msg.response - express response object
+  // msg.method - HTTP method used: GET, POST, etc...
 
   msg.response.send(`user id: ${msg.params.id}`);
   done();
@@ -37,6 +38,12 @@ seneca.add('role:web,route:userDetails', (msg, done) => {
 // use express-seneca-simple-routes middleware
 let app = express();
 app.use(router);
+app.use(function(req, res, next) {
+  let err = new Error("Not Found");
+  err.status = 404;
+  next(err);
+});
+
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')

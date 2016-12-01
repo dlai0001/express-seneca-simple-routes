@@ -15,9 +15,14 @@ seneca.add('role:web,route:userDetails', (msg, done) => {
   done();
 });
 
-// use express-seneca-simple-routes middleware
+// Hookup express middleware
 let app = express();
 app.use(router);
+app.use(function(req, res, next) {
+  let err = new Error("Not Found");
+  err.status = 404;
+  next(err);
+});
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')

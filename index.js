@@ -49,12 +49,13 @@ module.exports = class ExpressSenecaSimpleRoute {
     			return this.seneca.act({
     				role: "web",
     				route: routeEntry.name,
+            method: req.method,
     				params: result,
             reqest: req,
             response: res,
             next: next
     			}, function(err, result) {
-    				//do nothing            
+    				//do nothing
     			});
 
     		}
