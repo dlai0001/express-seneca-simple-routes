@@ -13,10 +13,10 @@
   "author": "David Lai",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0",
     "route-parser": "0.0.5"
   },
   "devDependencies": {
+    "express": "^4.14.0",
     "jsdoc": "^3.4.3",
     "seneca": "^3.2.2",
     "sinon": "^1.17.6",
