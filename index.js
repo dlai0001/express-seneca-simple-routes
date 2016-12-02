@@ -3,14 +3,19 @@ let Route = require('route-parser');
 
 
 module.exports = class ExpressSenecaSimpleRoute {
+
+    /**
+    * constructor
+    * @param {object} senecaInstance - Running instance of seneca
+    */
     constructor(senecaInstance) {
-    	this.seneca = senecaInstance;
+      this.seneca = senecaInstance;
 
     	// returns function binded to this class.
-      	let requestHandler = this.handleRequest.bind(this);
-      	requestHandler.register = this.register.bind(this);
+      let requestHandler = this.handleRequest.bind(this);
+      requestHandler.register = this.register.bind(this);
 
-      	return requestHandler;
+      return requestHandler;
     }
 
     /**
@@ -37,6 +42,12 @@ module.exports = class ExpressSenecaSimpleRoute {
     	}
     }
 
+    /**
+    * handles express middleware request.
+    * @param req - request
+    * @param res - response
+    * @param next - next handler
+    */
     handleRequest(req, res, next) {
 
     	for(let index in this.routes) {
@@ -54,8 +65,10 @@ module.exports = class ExpressSenecaSimpleRoute {
             reqest: req,
             response: res,
             next: next
-    			}, function(err, result) {
-    				//do nothing
+    			}, function(err) {
+    				if(err) {
+              return next(err);
+            }
     			});
 
     		}

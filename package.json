@@ -4,7 +4,7 @@
   "description": "Simple Express routes to seneca seneca actions.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/tape/bin/tape ./tests/**.js"
+    "test": "node_modules/tape/bin/tape ./tests/**.js --seneca.log.quiet"
   },
   "repository": {
     "type":"git",
