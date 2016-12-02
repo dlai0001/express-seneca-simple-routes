@@ -1,5 +1,5 @@
 let seneca = require('seneca')();
-let SimpleRouter = require("express-seneca-simple-routes");
+let SimpleRouter = require("../index");
 let express = require("express")
 
 // setup your routes
@@ -9,9 +9,14 @@ router.register({
 });
 
 // route handling actors
-seneca.add('role:web,route:userDetails', (msg, done) => {
+seneca.add('role:web,route:userDetails', (msg, reply) => {
+
+  if(msg.method != "GET") {
+    return reply(new Error("ONLY GET supported"));
+  }
+
   msg.response.send(`user id: ${msg.params.id}`);
-  done();
+  reply();
 });
 
 // Hookup express middleware
