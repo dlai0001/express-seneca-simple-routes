@@ -62,7 +62,7 @@ module.exports = class ExpressSenecaSimpleRoute {
     				route: routeEntry.name,
             method: req.method,
     				params: result,
-            reqest: req,
+            request: req,
             response: res,
             next: next
     			}, function(err) {
